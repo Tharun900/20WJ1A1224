@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Management Microservice</title>
+  <script>
+    function mergeNumbers() {
+      var urls = document.getElementsByName('url');
+      var mergedNumbers = [];
+
+      for (var i = 0; i < urls.length; i++) {
+        if (urls[i].value) {
+          // Simulated JSON response from each URL
+          var jsonResponse = {
+            "numbers": [1, 2, 3, 5, 8, 13]
+          };
+          
+          mergedNumbers = mergedNumbers.concat(jsonResponse.numbers);
+        }
+      }
+
+      // Remove duplicates and sort
+      var uniqueSortedNumbers = [...new Set(mergedNumbers)].sort(function(a, b) {
+        return a - b;
+      });
+
+      // Display the result
+      document.getElementById('result').textContent = "Merged Numbers: " + uniqueSortedNumbers.join(', ');
+    }
+  </script>
+</head>
+<body>
+  <h1>Number Management Microservice</h1>
+  
+  <form>
+    <label for="url1">URL 1:</label>
+    <input type="text" name="url" id="url1">
+    <br>
+    <label for="url2">URL 2:</label>
+    <input type="text" name="url" id="url2">
+    <br>
+    <label for="url3">URL 3:</label>
+    <input type="text" name="url" id="url3">
+    <br>
+    <button type="button" onclick="mergeNumbers()">Merge Numbers</button>
+  </form>
+  
+  <div id="result"></div>
+</body>
+</html>
